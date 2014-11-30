@@ -1,0 +1,155 @@
+FORMAT: 1A
+HOST: https://api.otr-ratte.de/v2
+
+# OTR-Ratte
+This is the official documentation for OTR-Ratte.de
+
+## Status Codes
+Every api-call can respond one of the following http-status codes:
+<table>
+<tr><th>Code</th><th>Description</th></tr>
+<tr><td>200</td><td>Success</td></tr>
+<tr><td>403</td><td>Forbidden (check logon fields; for more information check "Account", "Info")</td></tr>
+<tr><td>404</td><td>Not Found (check sent otrkey)</td></tr>
+</table>
+
+## Contact
+You need a new API method or found a bug? Contact me via mail: support@otr-ratte.de
+
+## Group Account
+### Info [/account/info{?type,user,password}]
+#### Account Information [GET]
+Returns account information including the donator-duration in days (field `donator`).
++ Parameters
+    + type (string)
+        Response Type
+        + Values
+            + `xml`
+            + `json`
+    + user (string) ... e-Mail-Address
+    + password (string) ... Password as md5 hash
+
++ Response 200 (application/json)
+
+        {
+            "login": true,
+            "donator": 123
+        }
+
++ Response 403 (application/json)
+
+        {
+            "login": false,
+            "error": "invalid login"
+        }
+
++ Response 200 (application/xml)
+
+        <?xml version="1.0"?>
+        <response>
+            <login>true</login>
+            <donator>123</donator>
+        </response>
+
++ Response 403 (application/xml)
+
+        <?xml version="1.0"?>
+        <response>
+            <login>false</login>
+            <error>invalid login</error>
+        </response>
+
+## Group Otrkey
+### Read [/otrkey/read{?type,user,password,otrkey}]
+#### Otrkey Information [GET]
+Returns information about the given `otrkey`.
++ Parameters
+    + type (string)
+        Response Type
+        + Values
+            + `xml`
+            + `json`
+    + user (string) ... e-Mail-Address
+    + password (string) ... Password as md5 hash
+    + otrkey (string) ... otrkey-name (some_file.otrkey)
+
++ Response 200 (application/json)
+
+        {
+            "login": true,
+            "size": 1531398256,
+            "otrEpgId": 9669758
+        }
+
++ Response 200 (application/xml)
+
+        <?xml version="1.0"?>
+        <response>
+            <login>true</login>
+            <size>1531398256</size>
+            <otrEpgId>9669758</otrEpgId>
+        </response>
+
++ Response 404 (application/json)
+
+        {
+            "login": true,
+            "error": "otrkey not found"
+        }
+
++ Response 404 (application/xml)
+
+        <?xml version="1.0"?>
+        <response>
+            <login>true</login>
+            <error>otrkey not found</error>
+        </response>
+
+### Find [/otrkey/find{?type,user,password,string}]
+#### Otrkey Files [GET]
+Searches for otrkey-files.
++ Parameters
+    + type (string)
+        Response Type
+        + Values
+            + `xml`
+            + `json`
+    + user (string) ... e-Mail-Address
+    + password (string) ... Password as md5 hash
+    + string (string) ... search string (parts of otrkey)
+
++ Response 200 (application/json)
+
+        {
+            "login": true,
+            "results": [
+                {
+                    "otrkey": "20_Jahre_Feste_Silbereisen_feiert_14.10.25_20-15_ard_180_TVOON_DE.mpg.HQ.avi.otrkey"
+                },
+                {
+                    "otrkey": "Akte_D_14.10.20_23-30_ard_45_TVOON_DE.mpg.HQ.avi.otrkey"
+                },
+                {
+                    "otrkey": "Akte_D_14.10.27_23-45_ard_45_TVOON_DE.mpg.HQ.avi.otrkey"
+                }
+            ]
+        }
+
++ Response 200 (application/xml)
+
+        <?xml version="1.0"?>
+        <response>
+            <login>true</login>
+            <results>
+                <result>
+                    <otrkey>20_Jahre_Feste_Silbereisen_feiert_14.10.25_20-15_ard_180_TVOON_DE.mpg.HQ.avi.otrkey</otrkey>
+                </result>
+                <result>
+                    <otrkey>Akte_D_14.10.20_23-30_ard_45_TVOON_DE.mpg.HQ.avi.otrkey</otrkey>
+                </result>
+                <result>
+                    <otrkey>Akte_D_14.10.27_23-45_ard_45_TVOON_DE.mpg.HQ.avi.otrkey</otrkey>
+                </result>
+            </results>
+        </response>
+
