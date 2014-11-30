@@ -32,14 +32,12 @@ Returns account information including the donator-duration in days (field `donat
 + Response 200 (application/json)
 
         {
-            "login": true,
             "donator": 123
         }
 
 + Response 403 (application/json)
 
         {
-            "login": false,
             "error": "invalid login"
         }
 
@@ -79,7 +77,6 @@ Returns information about the given `otrkey`.
 + Response 200 (application/json)
 
         {
-            "login": true,
             "size": 1531398256,
             "otrEpgId": 9669758
         }
@@ -88,7 +85,6 @@ Returns information about the given `otrkey`.
 
         <?xml version="1.0"?>
         <response>
-            <login>true</login>
             <size>1531398256</size>
             <otrEpgId>9669758</otrEpgId>
         </response>
@@ -96,7 +92,6 @@ Returns information about the given `otrkey`.
 + Response 404 (application/json)
 
         {
-            "login": true,
             "error": "otrkey not found"
         }
 
@@ -104,7 +99,6 @@ Returns information about the given `otrkey`.
 
         <?xml version="1.0"?>
         <response>
-            <login>true</login>
             <error>otrkey not found</error>
         </response>
 
@@ -124,7 +118,6 @@ Searches for otrkey-files.
 + Response 200 (application/json)
 
         {
-            "login": true,
             "results": [
                 {
                     "otrkey": "20_Jahre_Feste_Silbereisen_feiert_14.10.25_20-15_ard_180_TVOON_DE.mpg.HQ.avi.otrkey"
@@ -142,7 +135,6 @@ Searches for otrkey-files.
 
         <?xml version="1.0"?>
         <response>
-            <login>true</login>
             <results>
                 <result>
                     <otrkey>20_Jahre_Feste_Silbereisen_feiert_14.10.25_20-15_ard_180_TVOON_DE.mpg.HQ.avi.otrkey</otrkey>
