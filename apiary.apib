@@ -17,17 +17,17 @@ Every api-call can respond one of the following http-status codes:
 You need a new API method or found a bug? Contact me via mail: support@otr-ratte.de
 
 ## Group Account
-### Info [/account/info{?type,user,password}]
-#### Account Information [GET]
-Returns account information including the donator-duration in days (field `donator`).
+### Info [/account/info{?user,password}]
 + Parameters
-    + type (string)
-        Response Type
-        + Values
-            + `xml`
-            + `json`
     + user (string) ... e-Mail-Address
     + password (string) ... Password as md5 hash
+
+#### Account Information [GET]
+Returns account information including the donator-duration in days (field `donator`).
++ Request JSON
+    + Headers
+
+            Accept: application/json
 
 + Response 200 (application/json)
 
@@ -43,11 +43,15 @@ Returns account information including the donator-duration in days (field `donat
             "error": "invalid login"
         }
 
++ Request XML
+    + Headers
+
+            Accept: application/xml
+
 + Response 200 (application/xml)
 
         <?xml version="1.0"?>
         <response>
-            <login>true</login>
             <donator>123</donator>
         </response>
 
@@ -55,7 +59,6 @@ Returns account information including the donator-duration in days (field `donat
 
         <?xml version="1.0"?>
         <response>
-            <login>false</login>
             <error>invalid login</error>
         </response>
 
