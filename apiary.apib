@@ -13,6 +13,12 @@ Every api-call can respond one of the following http-status codes:
 <tr><td>404</td><td>Not Found (check sent otrkey)</td></tr>
 </table>
 
+## HTTP-Header
+### Accept
+Send the `Accept` header to tell the server, which kind of data format is used for communication.
+Possible values are `application/json` or `application/xml`.
+If you're not able to send the header, you can add the url parameter `?type=` to send the value `json` or `xml`.
+
 ## Contact
 You need a new API method or found a bug? Contact me via mail: support@otr-ratte.de or open a ticket at https://github.com/otrratte/api/issues
 
@@ -61,18 +67,19 @@ Returns account information including the donator-duration in days (field `donat
         </response>
 
 ## Group Otrkey
-### Read [/otrkey/read{?type,user,password,otrkey}]
-#### Otrkey Information [GET]
-Returns information about the given `otrkey`.
+### Read [/otrkey/read{?user,password,otrkey}]
 + Parameters
-    + type (string)
-        Response Type
-        + Values
-            + `xml`
-            + `json`
     + user (string) ... e-Mail-Address
     + password (string) ... Password as md5 hash
     + otrkey (string) ... otrkey-name (some_file.otrkey)
+
+#### Otrkey Information [GET]
+Returns information about the given `otrkey`.
+
++ Request JSON
+    + Headers
+
+            Accept: application/json
 
 + Response 200 (application/json)
 
@@ -80,6 +87,17 @@ Returns information about the given `otrkey`.
             "size": 1531398256,
             "otrEpgId": 9669758
         }
+
++ Response 404 (application/json)
+
+        {
+            "error": "otrkey not found"
+        }
+
++ Request XML
+    + Headers
+
+            Accept: application/xml
 
 + Response 200 (application/xml)
 
@@ -89,12 +107,6 @@ Returns information about the given `otrkey`.
             <otrEpgId>9669758</otrEpgId>
         </response>
 
-+ Response 404 (application/json)
-
-        {
-            "error": "otrkey not found"
-        }
-
 + Response 404 (application/xml)
 
         <?xml version="1.0"?>
@@ -102,18 +114,19 @@ Returns information about the given `otrkey`.
             <error>otrkey not found</error>
         </response>
 
-### Find [/otrkey/find{?type,user,password,string}]
-#### Otrkey Files [GET]
-Searches for otrkey-files.
+### Find [/otrkey/find{?user,password,string}]
 + Parameters
-    + type (string)
-        Response Type
-        + Values
-            + `xml`
-            + `json`
     + user (string) ... e-Mail-Address
     + password (string) ... Password as md5 hash
     + string (string) ... search string (parts of otrkey)
+
+#### Otrkey Files [GET]
+Searches for otrkey-files.
+
++ Request JSON
+    + Headers
+
+            Accept: application/json
 
 + Response 200 (application/json)
 
@@ -130,6 +143,11 @@ Searches for otrkey-files.
                 }
             ]
         }
+
++ Request XML
+    + Headers
+
+            Accept: application/xml
 
 + Response 200 (application/xml)
 
