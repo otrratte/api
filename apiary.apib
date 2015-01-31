@@ -74,7 +74,13 @@ Returns account information including the donator-duration in days (field `donat
     + otrkey (string) ... otrkey-name (some_file.otrkey)
 
 #### Otrkey Information [GET]
-Returns information about the given `otrkey`.
+Returns the following information about a given `otrkey`.
+<table>
+<tr><th>Field</th><th>Description</th></tr>
+<tr><td>otrkey</td><td>otrkey-name</td></tr>
+<tr><td>size</td><td>filesize in bytes</td></tr>
+<tr><td>otrEpgId</td><td>epg ID from onlinetvrecorder</td></tr>
+</table>
 
 + Request JSON
     + Headers
@@ -84,6 +90,7 @@ Returns information about the given `otrkey`.
 + Response 200 (application/json)
 
         {
+            "otrkey": "some_file.otrkey",
             "size": 1531398256,
             "otrEpgId": 9669758
         }
@@ -103,6 +110,7 @@ Returns information about the given `otrkey`.
 
         <?xml version="1.0"?>
         <response>
+            <otrkey>some_file.otrkey</otrkey>
             <size>1531398256</size>
             <otrEpgId>9669758</otrEpgId>
         </response>
