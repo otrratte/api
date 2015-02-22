@@ -29,7 +29,12 @@ You need a new API method or found a bug? Contact me via mail: support@otr-ratte
     + password (string) ... Password as md5 hash
 
 #### Account Information [GET]
-Returns account information including the donator-duration in days (field `donator`).
+Returns the following account information:
+<table>
+<tr><th>Field</th><th>Description</th></tr>
+<tr><td>mail</td><td>e-Mail-Address</td></tr>
+<tr><td>donator</td><td>donator duration in days</td></tr>
+</table>
 + Request JSON
     + Headers
 
@@ -38,6 +43,7 @@ Returns account information including the donator-duration in days (field `donat
 + Response 200 (application/json)
 
         {
+            "mail": "my@mail.com",
             "donator": 123
         }
 
@@ -56,6 +62,7 @@ Returns account information including the donator-duration in days (field `donat
 
         <?xml version="1.0"?>
         <response>
+            <mail>my@mail.com</mail>
             <donator>123</donator>
         </response>
 
