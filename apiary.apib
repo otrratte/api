@@ -74,10 +74,8 @@ Returns the following account information:
         </response>
 
 ## Group Otrkey
-### Read [/otrkey/read{?user,password,otrkey}]
+### Read [/otrkey/read{?otrkey}]
 + Parameters
-    + user (string) ... e-Mail-Address
-    + password (string) ... Password as md5 hash
     + otrkey (string) ... otrkey-name (some_file.otrkey)
 
 #### Otrkey Information [GET]
@@ -129,10 +127,8 @@ Returns the following information about a given `otrkey`.
             <error>otrkey not found</error>
         </response>
 
-### Find [/otrkey/find{?user,password,string}]
+### Find [/otrkey/find{?string}]
 + Parameters
-    + user (string) ... e-Mail-Address
-    + password (string) ... Password as md5 hash
     + string (string) ... search string (parts of otrkey)
 
 #### Otrkey Files [GET]
